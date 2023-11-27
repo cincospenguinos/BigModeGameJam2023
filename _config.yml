@@ -1,0 +1,13 @@
+title: Big Mode Game Jam 2023
+email: cincospenguinos@gmail.com
+description: >-
+  For Big Mode Game Jam 2023.
+github_username:  cincospenguinos
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - yarn.lock
+  - package.json
+  - Procfile
+  - .gitignore

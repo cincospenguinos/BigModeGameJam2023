@@ -1,0 +1,19 @@
+{
+  "name": "BigmodeGameJam2023",
+  "version": "0.0.1",
+  "description": "For Big Mode Game Jam 2023",
+  "main": "src/index.js",
+  "author": "Andre LaFleur <cincospenguinos@gmail.com>",
+  "license": "no",
+  "private": true,
+  "scripts": {
+    "start": "npx webpack --watch --env=development --config=webpack.config.js",
+    "deploy": "npx webpack --mode=production --env=production --config=webpack.config.js && echo 'Commit and push changes to deploy'"
+  },
+  "devDependencies": {
+    "phaser": "^3.70.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-inject-plugin": "^1.5.5"
+  }
+}
