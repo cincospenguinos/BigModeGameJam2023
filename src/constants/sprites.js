@@ -8,6 +8,13 @@ const SPRITES = {
       frameHeight: 32,
     },
   },
+  regularButtons: {
+    location: `${spriteDir}/regularButtons.png`,
+    config: {
+      frameWidth: 32,
+      frameHeight: 32,
+    },
+  },
   forklift: {
     location: `${spriteDir}/forklift.png`,
     config: {

@@ -4,10 +4,15 @@ For Big Mode game jam in 2023.
 
 ## TODO
 
-- [ ] Get a guy on screen
-- [ ] Get the guy to move
-- [ ] Get an input on screen with the guy
-- [ ] Get the inputs to work
+- [x] Get a guy on screen
+- [x] Get the guy to move
+- [ ] Get guy to rotate
+- [ ] Get guy to move with respect to rotation
+- [x] Get an input on screen with the guy
+- [x] Get the inputs to work
+
+### Nice to have
+
 - [ ] Full screen button. Maybe in settings?
 - [ ] Favicon?
 
