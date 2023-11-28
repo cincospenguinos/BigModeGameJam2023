@@ -10,6 +10,8 @@ For Big Mode game jam in 2023.
 - [x] Get guy to move with respect to rotation
 - [x] Get an input on screen with the guy
 - [x] Get the inputs to work
+- [ ] Randomly generate state machine
+- [ ] Randomly generate buttons according to number of letters needed
 
 ### Nice to have
 
