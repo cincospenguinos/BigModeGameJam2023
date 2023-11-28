@@ -13,26 +13,32 @@ class Forklift extends Phaser.Physics.Matter.Sprite {
 
   stop() {
     this.setVelocity(0, 0);
+    this.setAngularVelocity(0);
   }
 
   forward() {
-    this.setVelocity(0, Forklift.MAX_SPEED);
+    const vector = new Phaser.Math.Vector2();
+    vector.setToPolar(this.rotation, Forklift.MAX_SPEED)
+    this.setVelocity(vector.x, vector.y);
   }
 
   backward() {
-    this.setVelocity(0, -Forklift.MAX_SPEED);
+    const vector = new Phaser.Math.Vector2();
+    vector.setToPolar(this.rotation, -Forklift.MAX_SPEED)
+    this.setVelocity(vector.x, vector.y);
   }
 
   rotateRight() {
-
+    this.setAngularVelocity(Forklift.MAX_ANGULAR_SPEED);
   }
 
   rotateLeft() {
-
+    this.setAngularVelocity(-Forklift.MAX_ANGULAR_SPEED);
   }
 }
 
 Forklift.MAX_SPEED = 5;
+Forklift.MAX_ANGULAR_SPEED = Math.PI / 128;
 
 /**
  * Where the game is actually played.
@@ -64,7 +70,9 @@ export default class ForkliftScene extends Phaser.Scene {
     this._forkliftEventEmitter.on('ForkliftStateChange', this._forkliftStateChange, this);
   }
 
-  update() {}
+  update() {
+    console.log(this.player.rotation);
+  }
 
   _forkliftStateChange(newState) {
     switch(newState) {
@@ -83,6 +91,17 @@ export default class ForkliftScene extends Phaser.Scene {
       this.player.backward();
       console.log('backwards!');
       break;
+    case ForkliftStates.TURN:
+      this.player.stop();
+      console.log('time to turn!')
+      break;
+    case ForkliftStates.RIGHT:
+      console.log('Rotate right!');
+      this.player.rotateRight();
+      break;
+    case ForkliftStates.LEFT:
+      console.log('Rotate to the left!');
+      this.player.rotateLeft();
     }
   }
 }

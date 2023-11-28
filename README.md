@@ -6,8 +6,8 @@ For Big Mode game jam in 2023.
 
 - [x] Get a guy on screen
 - [x] Get the guy to move
-- [ ] Get guy to rotate
-- [ ] Get guy to move with respect to rotation
+- [x] Get guy to rotate
+- [x] Get guy to move with respect to rotation
 - [x] Get an input on screen with the guy
 - [x] Get the inputs to work
 

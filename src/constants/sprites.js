@@ -18,8 +18,8 @@ const SPRITES = {
   forklift: {
     location: `${spriteDir}/forklift.png`,
     config: {
-      frameWidth: 32,
-      frameHeight: 48,
+      frameWidth: 48,
+      frameHeight: 32,
     },
   },
 };

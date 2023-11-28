@@ -123,12 +123,16 @@ BacklitButton.COLORS = {
 
 // We can randomly generate a string like this, and make certain assertions, like only
 // one letter edge from the same state. We can do all that with regex.
-const StateMachineStr = 'NaM|MaF|MbB|FbM|BaM|McN';
+const StateMachineStr = 'NaM|MaF|MbB|FbM|BaM|McN|NbT|TcN|TbR|RcT|RbL|LbT';
 const StateTransitions = {};
 StateMachineStr.split('|').map((edgeString) => {
   const [origin, letter, target] = edgeString.split('');
   if (!StateTransitions[origin]) {
     StateTransitions[origin] = {};
+  }
+
+  if (StateTransitions[origin][letter]) {
+    throw `Transition for ${origin}${letter} already exists!`;
   }
 
   StateTransitions[origin][letter] = target;
@@ -149,9 +153,9 @@ export default class ControlPanelScene extends Phaser.Scene {
   }
 
   preload() {
-    const { backlitButtons, regularButtons } = CONSTANTS.sprites;
+    const { regularButtons } = CONSTANTS.sprites;
 
-    this.load.spritesheet(backlitButtons.key, backlitButtons.location, backlitButtons.config);
+    // this.load.spritesheet(backlitButtons.key, backlitButtons.location, backlitButtons.config);
     this.load.spritesheet(regularButtons.key, regularButtons.location, regularButtons.config);
   }
 
