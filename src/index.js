@@ -20,7 +20,7 @@ const config = {
         y: 0,
         x: 0,
       },
-      enableSleep: true, // TODO: What is this?
+      enableSleep: false, // NOTE! If the game moves too slowly we can try enabling this, although collisions may need to be futzed with
       debug: CONSTANTS.environment.isDev(),
     },
   },

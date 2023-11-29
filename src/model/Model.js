@@ -8,6 +8,9 @@ const ForkliftStates = {
   TURN: 'T',
   LEFT: 'L',
   RIGHT: 'R',
+  FORKLIFT: 'F',
+  FORKLIFT_UP: 'U',
+  FORKILFT_DOWN: 'D',
 };
 
 ForkliftStates.AllStates = Object.values(ForkliftStates);
@@ -122,8 +125,6 @@ ForkliftStateMachine.RandomlyGeneratedFrom = (seed) => {
 
   triplets.forEach((triplet) => {
     while (!machine.nodesStronglyConnected(triplet)) {
-      debugger;
-      // console.log(`${machine.toString()}`);
       let source = generator.pick(triplet);
       let target = generator.pick(triplet);
       let letter = generator.pick(ForkliftStateMachine.LETTERS);
@@ -133,12 +134,9 @@ ForkliftStateMachine.RandomlyGeneratedFrom = (seed) => {
         target = generator.pick(triplet);
         letter = generator.pick(ForkliftStateMachine.LETTERS);
       }
-
-      console.log(`${source}${letter}${target}`);
     }
   });
 
-  console.log(`${machine.toString()}; ${machine.isStronglyConnected}`)
   machine.containsAll(ForkliftStates.AllStates);
 
   return machine;

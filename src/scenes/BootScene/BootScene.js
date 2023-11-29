@@ -12,8 +12,14 @@ export default class BootScene extends Phaser.Scene {
   preload() {}
 
   create() {
-    const forkliftEventEmitter = new Phaser.Events.EventEmitter();
+    if (!CONSTANTS.environment.seed) {
+      CONSTANTS.environment.seed = parseInt(Math.random().toString().slice(2, -1));
+      console.log('Generating seed!');
+    }
 
+    console.log(`Seed set to ${CONSTANTS.environment.seed}`);
+
+    const forkliftEventEmitter = new Phaser.Events.EventEmitter();
     this.scene.launch(CONSTANTS.keys.ForkliftScene, { forkliftEventEmitter });
     this.scene.launch(CONSTANTS.keys.ControlPanelScene, { forkliftEventEmitter });
 

@@ -10,11 +10,15 @@ For Big Mode game jam in 2023.
 - [x] Get guy to move with respect to rotation
 - [x] Get an input on screen with the guy
 - [x] Get the inputs to work
-- [ ] Randomly generate state machine
+- [x] Randomly generate state machine
+- [ ] Randomly generate number of letters used
 - [ ] Randomly generate buttons according to number of letters needed
+- [ ] Add forklift to sprite
+- [ ] Add forklift to state machine
 
 ### Nice to have
 
+- [ ] Keyboard support?
 - [ ] Full screen button. Maybe in settings?
 - [ ] Favicon?
 
@@ -26,5 +30,4 @@ For Big Mode game jam in 2023.
 
 ## NOTES
 
-* I'm thinking we'll do the forklift game I've been spitballing for a while. It'll be fun, light-hearted, and silly, would push my skills, and would be doable in a little over two weeks
 * We'll have to use [MatterJS](https://phaser.io/examples/v3/category/physics/matterjs) to do our physics work

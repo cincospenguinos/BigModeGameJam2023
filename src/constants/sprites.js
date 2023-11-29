@@ -8,6 +8,13 @@ const SPRITES = {
       frameHeight: 32,
     },
   },
+  modeIndicator: {
+    location: `${spriteDir}/modeIndicator.png`,
+    config: {
+      frameWidth: 40,
+      frameHeight: 50,
+    },
+  },
   regularButtons: {
     location: `${spriteDir}/regularButtons.png`,
     config: {

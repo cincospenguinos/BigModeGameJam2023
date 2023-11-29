@@ -8,7 +8,7 @@ class Forklift extends Phaser.Physics.Matter.Sprite {
     scene.add.existing(this);
 
     // body, air, static
-    this.setFriction(0.5, 0, 0); // We want to continue indefinitely, until we collide into something
+    this.setFriction(0.5, 0, 0); // We want to continue to move until we collide into something
   }
 
   stop() {
@@ -64,42 +64,22 @@ export default class ForkliftScene extends Phaser.Scene {
 
     this.player = new Forklift(this, { x: 500, y: 500 });
     this.cameras.main.startFollow(this.player);
-
-    this.cameras.main.setBackgroundColor('rgba(255, 0, 0, 0.5)');
-
     this._forkliftEventEmitter.on('ForkliftStateChange', this._forkliftStateChange, this);
   }
 
   update() {}
 
   _forkliftStateChange(newState) {
-    switch(newState) {
-    case ForkliftStates.NONE:
-      console.log('Neutral mode!');
-      break;
-    case ForkliftStates.MOVEMENT:
-      console.log('Movement mode!');
-      this.player.stop();
-      break;
-    case ForkliftStates.FORWARD:
-      this.player.forward();
-      console.log('onwards!');
-      break;
-    case ForkliftStates.BACKWARD:
-      this.player.backward();
-      console.log('backwards!');
-      break;
-    case ForkliftStates.TURN:
-      this.player.stop();
-      console.log('time to turn!')
-      break;
-    case ForkliftStates.RIGHT:
-      console.log('Rotate right!');
-      this.player.rotateRight();
-      break;
-    case ForkliftStates.LEFT:
-      console.log('Rotate to the left!');
-      this.player.rotateLeft();
-    }
+    const actions = {
+      [ForkliftStates.NONE]: () => {},
+      [ForkliftStates.MOVEMENT]: () => this.player.stop(),
+      [ForkliftStates.FORWARD]: () => this.player.forward(),
+      [ForkliftStates.BACKWARD]: () => this.player.backward(),
+      [ForkliftStates.TURN]: () => this.player.stop(),
+      [ForkliftStates.RIGHT]: () => this.player.rotateRight(),
+      [ForkliftStates.LEFT]: () => this.player.rotateLeft(),
+    };
+
+    actions[newState]();
   }
 }
