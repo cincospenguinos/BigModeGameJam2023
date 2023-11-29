@@ -70,9 +70,7 @@ export default class ForkliftScene extends Phaser.Scene {
     this._forkliftEventEmitter.on('ForkliftStateChange', this._forkliftStateChange, this);
   }
 
-  update() {
-    console.log(this.player.rotation);
-  }
+  update() {}
 
   _forkliftStateChange(newState) {
     switch(newState) {

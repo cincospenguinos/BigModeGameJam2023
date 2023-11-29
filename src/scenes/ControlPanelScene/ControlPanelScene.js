@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import CONSTANTS from '../../constants';
+import { ForkliftStates, ForkliftStateMachine } from '../../model/Model.js';
 
 const ButtonColors = {
   RED: 'RED',
@@ -121,25 +122,6 @@ BacklitButton.COLORS = {
   BLUE: 'BLUE',
 };
 
-// We can randomly generate a string like this, and make certain assertions, like only
-// one letter edge from the same state. We can do all that with regex.
-const StateMachineStr = 'NaM|MaF|MbB|FbM|BaM|McN|NbT|TcN|TbR|RcT|RbL|LbT';
-const StateTransitions = {};
-StateMachineStr.split('|').map((edgeString) => {
-  const [origin, letter, target] = edgeString.split('');
-  if (!StateTransitions[origin]) {
-    StateTransitions[origin] = {};
-  }
-
-  if (StateTransitions[origin][letter]) {
-    throw `Transition for ${origin}${letter} already exists!`;
-  }
-
-  StateTransitions[origin][letter] = target;
-});
-
-console.log(StateTransitions);
-
 /**
  * Handles how the forklift moves.
  */
@@ -150,6 +132,9 @@ export default class ControlPanelScene extends Phaser.Scene {
 
   init(dataFromBoot) { // TODO: Pass the seed around for randomizing everything!
     this._forkliftEventEmitter = dataFromBoot.forkliftEventEmitter;
+    this._forkliftStateMachine = ForkliftStateMachine.RandomlyGeneratedFrom(977112);
+    console.log(this._forkliftStateMachine.isStronglyConnected);
+    console.log(`>>> ${this._forkliftStateMachine.toString()}`)
   }
 
   preload() {
@@ -160,30 +145,35 @@ export default class ControlPanelScene extends Phaser.Scene {
   }
 
   create() {
-    this.currentState = 'N';
+    this.currentState = ForkliftStates.NONE;
     this._panelObjs = 'abc'.split('').map((assignedLetter, idx) => {
       return new RegularButton(this, assignedLetter, { x: 250 + 40 * idx, y: 350 });
     });
 
-    // this.events.on('ForkliftStateChange', () => console.log('derp'));
+    this._modeText = this.add.text(20, 350, this.currentState, { fontSize: 40 });
   }
 
   update() {
     const inputStr = this._panelObjs.map(o => o.letterState).join('');
     if (inputStr) {
-      const lettersToMatch = Object.keys(StateTransitions[this.currentState]);
+      const lettersToMatch = Object.keys(this._forkliftStateMachine.graph[this.currentState]);
       const matchingLetters = lettersToMatch.filter(l => inputStr.indexOf(l) !== -1);
 
       if (matchingLetters.length > 0) {
         let newState = this.currentState;
         matchingLetters.forEach((l) => {
-          if (StateTransitions[newState][l]) {
-            newState = StateTransitions[newState][l];
+          if (this._forkliftStateMachine.graph[newState][l]) {
+            newState = this._forkliftStateMachine.graph[newState][l];
           }
         });
 
         if (newState != this.currentState) {
           this.currentState = newState;
+
+          if (ForkliftStates.IsMode(this.currentState)) {
+            this._modeText.setText(this.currentState);
+          }
+
           this._forkliftEventEmitter.emit('ForkliftStateChange', this.currentState);
         }
       }
