@@ -11,8 +11,22 @@ For Big Mode game jam in 2023.
 - [x] Get an input on screen with the guy
 - [x] Get the inputs to work
 - [x] Randomly generate state machine
+- [ ] Put together a nice forklift sprite
+    * It may need to be two different sprites--one of the fork, one of the machine
+- [ ] Add box sprites
+    * Maybe different colors--like yellow, red and blue--for the purpose of games
+- [ ] Box <-> forklift collision works
+    * When the fork is down, the fork can go under the box
+    * When the fork is up, the fork collides with the box
 - [ ] Randomly generate number of letters used
 - [ ] Randomly generate buttons according to number of letters needed
+- [ ] Add support for pressing letter keys for various buttons
+- [ ] Buttons have "down" and "up" frames that are animated
+- [ ] Find or create a tilesheet for a warehouse
+- [ ] Create a warehouse map
+    * There should be rows and columns
+- [ ] Create box sprites of several colors
+- [ ] Create bays
 - [ ] Add forklift to sprite
 - [ ] Add forklift to state machine
 
@@ -21,6 +35,13 @@ For Big Mode game jam in 2023.
 - [ ] Keyboard support?
 - [ ] Full screen button. Maybe in settings?
 - [ ] Favicon?
+- [ ] Add switches
+- [ ] Add stick shift
+- [ ] Add D-Pad
+- [ ] Add a number pas
+- [ ] Add pedals
+- [ ] Add a knob
+- [ ] Add sliders
 
 ## IDEAS
 
